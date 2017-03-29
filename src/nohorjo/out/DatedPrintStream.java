@@ -14,7 +14,7 @@ public class DatedPrintStream extends PrintStream {
 	}
 
 	public DatedPrintStream(OutputStream out) {
-		this(out, "ss.MM.yy HH:mm:ss  ");
+		this(out, "dd.MM.yy HH:mm:ss  ");
 	}
 
 	@Override
