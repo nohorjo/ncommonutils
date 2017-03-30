@@ -1,9 +1,16 @@
 package nohorjo.doc;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.namespace.QName;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
@@ -12,6 +19,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * This class handles actions on {@link Document}s
@@ -24,6 +32,17 @@ public class XmlDocument {
 
 	public XmlDocument(Document doc) {
 		this.doc = doc;
+	}
+
+	public XmlDocument(String xml) throws ParserConfigurationException, SAXException, IOException {
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setNamespaceAware(true);
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		this.doc = builder.parse(new ByteArrayInputStream(xml.getBytes()));
+	}
+
+	public XmlDocument(File file) throws SAXException, IOException, ParserConfigurationException {
+		this(new String(Files.readAllBytes(file.toPath())));
 	}
 
 	/**
