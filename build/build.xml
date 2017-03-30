@@ -7,7 +7,7 @@
 	</target>
 
 	<target name="compile" depends="clean">
-		<javac srcdir="src" destdir="bin" classpath="." target="1.7" source="1.7" />
+		<javac srcdir="src" destdir="bin" classpath="." target="1.7" source="1.7" debug="on"/>
 	</target>
 
 
