@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class CLIArgs {
 	Map<String, String> args;
@@ -75,6 +76,6 @@ public class CLIArgs {
 	}
 
 	public List<String> getList(String arg, String delim) throws InvalidCLIArgException {
-		return new ArrayList<>(Arrays.asList(getString(arg).split(delim)));
+		return new ArrayList<>(Arrays.asList(getString(arg).split(Pattern.quote(delim))));
 	}
 }
